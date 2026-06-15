@@ -72,23 +72,31 @@ PROMPT;
             $validated['messages']
         );
 
-        $response = Http::timeout(20)
-            ->withOptions([
-                'curl' => [
-                    CURLOPT_CAINFO => storage_path('cacert.pem'),
-                    CURLOPT_SSL_VERIFYPEER => true,
-                ],
-            ])
-            ->withHeaders([
-                'Authorization' => 'Bearer ' . $apiKey,
-                'Content-Type'  => 'application/json',
-            ])
-            ->post('https://api.deepseek.com/chat/completions', [
-                'model'       => 'deepseek-chat',
-                'messages'    => $messages,
-                'max_tokens'  => 300,
-                'temperature' => 0.7,
-            ]);
+        $resolvedIp = gethostbyname('api.deepseek.com');
+        $curlOptions = [
+            CURLOPT_CAINFO         => storage_path('cacert.pem'),
+            CURLOPT_SSL_VERIFYPEER => true,
+        ];
+        if ($resolvedIp !== 'api.deepseek.com') {
+            $curlOptions[CURLOPT_RESOLVE] = ['api.deepseek.com:443:' . $resolvedIp];
+        }
+
+        try {
+            $response = Http::timeout(20)
+                ->withOptions(['curl' => $curlOptions])
+                ->withHeaders([
+                    'Authorization' => 'Bearer ' . $apiKey,
+                    'Content-Type'  => 'application/json',
+                ])
+                ->post('https://api.deepseek.com/chat/completions', [
+                    'model'       => 'deepseek-v4-flash',
+                    'messages'    => $messages,
+                    'max_tokens'  => 300,
+                    'temperature' => 0.7,
+                ]);
+        } catch (\Illuminate\Http\Client\ConnectionException $e) {
+            return response()->json(['error' => 'The AI assistant is currently unavailable. Please use our Contact Us form to reach the team.'], 503);
+        }
 
         if ($response->status() === 402) {
             return response()->json(['error' => 'The AI assistant is temporarily offline. Please use our Contact Us form to reach the team.'], 503);
