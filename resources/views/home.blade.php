@@ -5,9 +5,42 @@
 
 {{-- ── Hero ──────────────────────────────────────────── --}}
 <section class="hero">
+    {{-- Circuit board background decoration --}}
+    <div class="hero-circuit" aria-hidden="true">
+        <svg viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;right:0;top:0;width:60%;height:100%;opacity:.06;pointer-events:none;">
+            <line x1="100" y1="50" x2="100" y2="450" stroke="#60A5FA" stroke-width="1.5"/>
+            <line x1="200" y1="0" x2="200" y2="500" stroke="#60A5FA" stroke-width="1"/>
+            <line x1="350" y1="50" x2="350" y2="450" stroke="#60A5FA" stroke-width="1.5"/>
+            <line x1="500" y1="0" x2="500" y2="500" stroke="#60A5FA" stroke-width="1"/>
+            <line x1="650" y1="50" x2="650" y2="450" stroke="#60A5FA" stroke-width="1.5"/>
+            <line x1="800" y1="0" x2="800" y2="500" stroke="#60A5FA" stroke-width="1"/>
+            <line x1="0" y1="100" x2="900" y2="100" stroke="#60A5FA" stroke-width="1"/>
+            <line x1="0" y1="200" x2="900" y2="200" stroke="#60A5FA" stroke-width="1.5"/>
+            <line x1="0" y1="300" x2="900" y2="300" stroke="#60A5FA" stroke-width="1"/>
+            <line x1="0" y1="400" x2="900" y2="400" stroke="#60A5FA" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="5" fill="#60A5FA"/>
+            <circle cx="200" cy="200" r="4" fill="#60A5FA"/>
+            <circle cx="350" cy="100" r="5" fill="#60A5FA"/>
+            <circle cx="350" cy="300" r="5" fill="#60A5FA"/>
+            <circle cx="500" cy="200" r="4" fill="#60A5FA"/>
+            <circle cx="650" cy="100" r="5" fill="#60A5FA"/>
+            <circle cx="650" cy="300" r="4" fill="#60A5FA"/>
+            <circle cx="800" cy="200" r="5" fill="#60A5FA"/>
+            <circle cx="800" cy="400" r="4" fill="#60A5FA"/>
+            <rect x="300" y="150" width="100" height="60" rx="6" stroke="#60A5FA" stroke-width="1.5" fill="none"/>
+            <rect x="600" y="250" width="100" height="60" rx="6" stroke="#60A5FA" stroke-width="1.5" fill="none"/>
+            <line x1="100" y1="100" x2="300" y2="180" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="400" y1="180" x2="650" y2="100" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="650" y1="300" x2="600" y2="280" stroke="#60A5FA" stroke-width="1" stroke-dasharray="4 4"/>
+        </svg>
+        {{-- Glowing orbs --}}
+        <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.15) 0%,transparent 70%);top:-100px;right:-50px;pointer-events:none;"></div>
+        <div style="position:absolute;width:250px;height:250px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.1) 0%,transparent 70%);bottom:0;right:35%;pointer-events:none;"></div>
+    </div>
+
     <div class="container position-relative">
         <div class="row align-items-center g-5">
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <div class="hero-eyebrow mb-4">
                     <i class="bi bi-geo-alt-fill" style="color:#60A5FA;font-size:.75rem;"></i>
                     Headquartered in Sunderland · Global Impact
@@ -22,28 +55,26 @@
                         Get In Touch
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-5">
-                <div class="row g-3">
-                    <div class="col-6">
+                <div class="row g-3 mt-2">
+                    <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
                         <div class="stat-pill">
                             <div class="num">200+</div>
                             <div class="lbl">Projects Delivered</div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
                         <div class="stat-pill">
                             <div class="num">15+</div>
                             <div class="lbl">Industries Served</div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
                         <div class="stat-pill">
                             <div class="num">98%</div>
                             <div class="lbl">Client Satisfaction</div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 col-sm-3 col-lg-6 col-xl-3">
                         <div class="stat-pill">
                             <div class="num">24/7</div>
                             <div class="lbl">AI-Powered Support</div>
@@ -51,9 +82,125 @@
                     </div>
                 </div>
             </div>
+            {{-- AI Robot Illustration --}}
+            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center">
+                <div style="position:relative;width:420px;height:420px;flex-shrink:0;">
+                    {{-- Pulsing glow ring --}}
+                    <div class="hero-ring" style="position:absolute;inset:0;border-radius:50%;border:2px solid rgba(96,165,250,.2);animation:ringPulse 3s ease-in-out infinite;"></div>
+                    <div class="hero-ring" style="position:absolute;inset:20px;border-radius:50%;border:1px solid rgba(96,165,250,.15);animation:ringPulse 3s ease-in-out infinite .5s;"></div>
+
+                    {{-- Robot SVG --}}
+                    <svg viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg"
+                         style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:300px;height:340px;filter:drop-shadow(0 0 32px rgba(37,99,235,.35));animation:robotFloat 4s ease-in-out infinite;">
+
+                        {{-- Antenna --}}
+                        <line x1="150" y1="20" x2="150" y2="50" stroke="#60A5FA" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="150" cy="14" r="7" fill="#2563EB" stroke="#60A5FA" stroke-width="2"/>
+                        <circle cx="150" cy="14" r="3" fill="#93C5FD">
+                            <animate attributeName="opacity" values="1;0.3;1" dur="1.5s" repeatCount="indefinite"/>
+                        </circle>
+
+                        {{-- Head --}}
+                        <rect x="80" y="50" width="140" height="110" rx="20" fill="#1E3A5F" stroke="#2563EB" stroke-width="2"/>
+                        <rect x="88" y="58" width="124" height="94" rx="14" fill="#0F2440"/>
+
+                        {{-- Eyes --}}
+                        <rect x="100" y="80" width="38" height="28" rx="8" fill="#0A1628"/>
+                        <rect x="162" y="80" width="38" height="28" rx="8" fill="#0A1628"/>
+                        <ellipse cx="119" cy="94" rx="13" ry="11" fill="#2563EB">
+                            <animate attributeName="fill" values="#2563EB;#60A5FA;#2563EB" dur="2s" repeatCount="indefinite"/>
+                        </ellipse>
+                        <ellipse cx="181" cy="94" rx="13" ry="11" fill="#2563EB">
+                            <animate attributeName="fill" values="#2563EB;#60A5FA;#2563EB" dur="2s" repeatCount="indefinite" begin=".3s"/>
+                        </ellipse>
+                        <circle cx="119" cy="94" r="5" fill="#93C5FD" opacity=".8"/>
+                        <circle cx="181" cy="94" r="5" fill="#93C5FD" opacity=".8"/>
+
+                        {{-- Mouth / LED bar --}}
+                        <rect x="105" y="122" width="90" height="10" rx="5" fill="#0A1628"/>
+                        <rect x="108" y="124" width="20" height="6" rx="3" fill="#2563EB">
+                            <animate attributeName="width" values="20;50;20" dur="2s" repeatCount="indefinite"/>
+                        </rect>
+
+                        {{-- Neck --}}
+                        <rect x="135" y="160" width="30" height="18" rx="4" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+
+                        {{-- Body --}}
+                        <rect x="60" y="178" width="180" height="130" rx="18" fill="#1E3A5F" stroke="#2563EB" stroke-width="2"/>
+                        <rect x="72" y="190" width="156" height="106" rx="12" fill="#0F2440"/>
+
+                        {{-- Chest panel --}}
+                        <rect x="90" y="204" width="120" height="70" rx="8" fill="#0A1628" stroke="#1D4ED8" stroke-width="1.5"/>
+
+                        {{-- Chest display --}}
+                        <rect x="96" y="210" width="50" height="12" rx="3" fill="#1D4ED8" opacity=".6"/>
+                        <rect x="96" y="226" width="35" height="5" rx="2" fill="#2563EB" opacity=".5"/>
+                        <rect x="134" y="226" width="20" height="5" rx="2" fill="#60A5FA" opacity=".4"/>
+                        <rect x="96" y="235" width="108" height="4" rx="2" fill="#1D4ED8" opacity=".3"/>
+                        <rect x="96" y="243" width="80" height="4" rx="2" fill="#1D4ED8" opacity=".3"/>
+                        <rect x="96" y="251" width="100" height="4" rx="2" fill="#1D4ED8" opacity=".3"/>
+                        <circle cx="174" cy="216" r="10" fill="#0F2440" stroke="#2563EB" stroke-width="1.5"/>
+                        <circle cx="174" cy="216" r="5" fill="#2563EB">
+                            <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite"/>
+                        </circle>
+
+                        {{-- Left arm --}}
+                        <rect x="20" y="178" width="36" height="100" rx="14" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+                        <rect x="14" y="272" width="38" height="24" rx="10" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+
+                        {{-- Right arm --}}
+                        <rect x="244" y="178" width="36" height="100" rx="14" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+                        <rect x="248" y="272" width="38" height="24" rx="10" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+
+                        {{-- Legs --}}
+                        <rect x="90" y="308" width="44" height="28" rx="10" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+                        <rect x="166" y="308" width="44" height="28" rx="10" fill="#1E3A5F" stroke="#2563EB" stroke-width="1.5"/>
+
+                        {{-- Data nodes floating --}}
+                        <circle cx="42" cy="140" r="5" fill="#60A5FA" opacity=".7">
+                            <animate attributeName="cy" values="140;134;140" dur="2.5s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values=".7;1;.7" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="258" cy="160" r="4" fill="#93C5FD" opacity=".6">
+                            <animate attributeName="cy" values="160;154;160" dur="2s" repeatCount="indefinite" begin=".5s"/>
+                            <animate attributeName="opacity" values=".6;1;.6" dur="2s" repeatCount="indefinite" begin=".5s"/>
+                        </circle>
+                        <circle cx="30" cy="230" r="3" fill="#60A5FA" opacity=".5">
+                            <animate attributeName="cx" values="30;36;30" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="270" cy="220" r="4" fill="#93C5FD" opacity=".5">
+                            <animate attributeName="cx" values="270;264;270" dur="3.5s" repeatCount="indefinite"/>
+                        </circle>
+                    </svg>
+
+                    {{-- Floating AI badges --}}
+                    <div style="position:absolute;top:10%;right:0;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);border-radius:10px;padding:.4rem .75rem;font-size:.75rem;font-weight:700;color:#93C5FD;white-space:nowrap;animation:robotFloat 3s ease-in-out infinite 1s;">
+                        <i class="bi bi-cpu-fill me-1"></i>Neural Network
+                    </div>
+                    <div style="position:absolute;bottom:20%;left:0;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);border-radius:10px;padding:.4rem .75rem;font-size:.75rem;font-weight:700;color:#93C5FD;white-space:nowrap;animation:robotFloat 3.5s ease-in-out infinite .5s;">
+                        <i class="bi bi-graph-up-arrow me-1"></i>Predictive AI
+                    </div>
+                    <div style="position:absolute;bottom:5%;right:5%;background:rgba(37,99,235,.15);border:1px solid rgba(37,99,235,.3);border-radius:10px;padding:.4rem .75rem;font-size:.75rem;font-weight:700;color:#93C5FD;white-space:nowrap;animation:robotFloat 4s ease-in-out infinite .2s;">
+                        <i class="bi bi-shield-check me-1"></i>Secure AI
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
+
+@push('styles')
+<style>
+@keyframes robotFloat {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    50%       { transform: translate(-50%, -50%) translateY(-12px); }
+}
+@keyframes ringPulse {
+    0%, 100% { opacity: .6; transform: scale(1); }
+    50%       { opacity: .2; transform: scale(1.04); }
+}
+</style>
+@endpush
 
 {{-- ── Trusted By ────────────────────────────────────── --}}
 <div style="background:var(--slate-50);border-top:1px solid var(--slate-200);border-bottom:1px solid var(--slate-200);padding:20px 0;">
@@ -354,7 +501,23 @@
 @endif
 
 {{-- ── CTA Band ──────────────────────────────────────── --}}
-<div class="cta-band">
+<div class="cta-band" style="position:relative;overflow:hidden;">
+    <svg style="position:absolute;left:5%;top:50%;transform:translateY(-50%);width:160px;height:160px;opacity:.06;pointer-events:none;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="100" cy="100" r="90" stroke="white" stroke-width="2"/>
+        <circle cx="100" cy="100" r="60" stroke="white" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="30" stroke="white" stroke-width="1"/>
+        <line x1="10" y1="100" x2="190" y2="100" stroke="white" stroke-width="1"/>
+        <line x1="100" y1="10" x2="100" y2="190" stroke="white" stroke-width="1"/>
+        <circle cx="100" cy="100" r="8" fill="white"/>
+    </svg>
+    <svg style="position:absolute;right:5%;top:50%;transform:translateY(-50%);width:120px;height:120px;opacity:.05;pointer-events:none;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <polygon points="100,10 190,55 190,145 100,190 10,145 10,55" stroke="white" stroke-width="2" fill="none"/>
+        <polygon points="100,40 160,72 160,128 100,160 40,128 40,72" stroke="white" stroke-width="1.5" fill="none"/>
+        <circle cx="100" cy="100" r="20" stroke="white" stroke-width="1.5" fill="none"/>
+        <line x1="100" y1="10" x2="100" y2="40" stroke="white" stroke-width="1"/>
+        <line x1="190" y1="55" x2="160" y2="72" stroke="white" stroke-width="1"/>
+        <line x1="10" y1="55" x2="40" y2="72" stroke="white" stroke-width="1"/>
+    </svg>
     <div class="container position-relative">
         <div class="row justify-content-center text-center">
             <div class="col-lg-6">

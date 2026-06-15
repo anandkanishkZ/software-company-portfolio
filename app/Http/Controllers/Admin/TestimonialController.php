@@ -62,4 +62,22 @@ class TestimonialController extends Controller
 
         return back()->with('success', 'Testimonial deleted.');
     }
+
+    public function reviews()
+    {
+        $reviews = Testimonial::where('source', 'public')->latest()->get();
+        return view('admin.reviews.index', compact('reviews'));
+    }
+
+    public function approve(Testimonial $testimonial)
+    {
+        $testimonial->update(['is_approved' => true]);
+        return back()->with('success', 'Review approved and is now live.');
+    }
+
+    public function destroyReview(Testimonial $testimonial)
+    {
+        $testimonial->delete();
+        return back()->with('success', 'Review deleted.');
+    }
 }

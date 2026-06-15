@@ -58,7 +58,9 @@
                         <div>{{ $c->created_at->format('H:i') }}</div>
                     </td>
                     <td>
-                        @if($c->is_read)
+                        @if($c->admin_response)
+                        <span style="background:#F0FDF4;color:#16A34A;font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;border:1px solid #BBF7D0;">Responded</span>
+                        @elseif($c->is_read)
                         <span class="badge-read">Read</span>
                         @else
                         <span class="badge-new">New</span>
@@ -109,6 +111,29 @@
                     <div class="col-6"><span style="color:var(--s400);">Phone:</span> {{ $c->phone }}</div>
                     <div class="col-6"><span style="color:var(--s400);">Country:</span> {{ $c->country }}</div>
                     <div class="col-6"><span style="color:var(--s400);">Received:</span> {{ $c->created_at->format('d M Y, H:i') }}</div>
+                </div>
+
+                {{-- Admin Response --}}
+                <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--s200);">
+                    <div style="font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--s400);margin-bottom:.75rem;">
+                        Admin Response
+                    </div>
+                    @if($c->admin_response)
+                    <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:.875rem;font-size:.875rem;color:#166534;line-height:1.6;margin-bottom:.75rem;">
+                        <i class="bi bi-check-circle-fill me-1"></i>{{ $c->admin_response }}
+                        <div style="font-size:.75rem;color:#4ADE80;margin-top:.4rem;">Sent {{ $c->responded_at->format('d M Y, H:i') }}</div>
+                    </div>
+                    @endif
+                    <form method="POST" action="{{ route('admin.inquiries.respond', $c) }}">
+                        @csrf
+                        <textarea name="admin_response" rows="3"
+                                  class="form-control mb-2"
+                                  style="font-size:.875rem;"
+                                  placeholder="Type a short acknowledgement or response…">{{ $c->admin_response }}</textarea>
+                        <button type="submit" class="btn btn-primary btn-sm px-3 py-2" style="font-size:.8rem;">
+                            <i class="bi bi-send me-1"></i>{{ $c->admin_response ? 'Update Response' : 'Save Response' }}
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

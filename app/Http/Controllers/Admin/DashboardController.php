@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -43,5 +44,20 @@ class DashboardController extends Controller
         $contact->update(['is_read' => true]);
 
         return back()->with('success', 'Inquiry marked as read.');
+    }
+
+    public function respond(Request $request, Contact $contact)
+    {
+        $request->validate([
+            'admin_response' => ['required', 'string', 'max:1000'],
+        ]);
+
+        $contact->update([
+            'admin_response' => $request->admin_response,
+            'responded_at'   => now(),
+            'is_read'        => true,
+        ]);
+
+        return back()->with('success', 'Response saved.');
     }
 }

@@ -224,6 +224,28 @@
         @if($articleCount > 0)<span style="margin-left:auto;font-size:.7rem;color:rgba(255,255,255,.3);">{{ $articleCount }}</span>@endif
     </a>
 
+    <a href="{{ route('admin.services.index') }}" class="sidebar-link {{ request()->routeIs('admin.services*') ? 'active' : '' }}">
+        <i class="bi bi-gear"></i> Services
+    </a>
+
+    <a href="{{ route('admin.industries.index') }}" class="sidebar-link {{ request()->routeIs('admin.industries*') ? 'active' : '' }}">
+        <i class="bi bi-building"></i> Industries
+    </a>
+
+    <a href="{{ route('admin.gallery.index') }}" class="sidebar-link {{ request()->routeIs('admin.gallery*') ? 'active' : '' }}">
+        <i class="bi bi-images"></i> Gallery
+    </a>
+
+    <a href="{{ route('admin.events.index') }}" class="sidebar-link {{ request()->routeIs('admin.events*') ? 'active' : '' }}">
+        <i class="bi bi-calendar-event"></i> Events
+    </a>
+
+    @php $pendingReviews = \App\Models\Testimonial::where('is_approved', false)->where('source', 'public')->count(); @endphp
+    <a href="{{ route('admin.reviews.index') }}" class="sidebar-link {{ request()->routeIs('admin.reviews*') ? 'active' : '' }}">
+        <i class="bi bi-star-half"></i> Reviews
+        @if($pendingReviews > 0)<span class="badge-count">{{ $pendingReviews }}</span>@endif
+    </a>
+
     <div class="sidebar-label" style="margin-top:.5rem;">External</div>
 
     <a href="{{ route('home') }}" class="sidebar-link" target="_blank">

@@ -20,10 +20,56 @@
                 <div class="row g-0">
                     <div class="col-md-4 {{ $i % 2 == 1 ? 'order-md-2' : '' }}">
                         @if($industry->image)
-                        <img src="{{ asset('storage/'.$industry->image) }}" class="img-fluid h-100 w-100" style="object-fit:cover;min-height:240px;" alt="{{ $industry->name }}">
+                        <img src="{{ Str::startsWith($industry->image,'http') ? $industry->image : asset('storage/'.$industry->image) }}"
+                             class="img-fluid h-100 w-100" style="object-fit:cover;min-height:260px;" alt="{{ $industry->name }}">
                         @else
-                        <div class="h-100 d-flex align-items-center justify-content-center" style="min-height:240px;background:var(--navy);">
-                            <i class="bi bi-buildings" style="font-size:3rem;color:rgba(255,255,255,.15);"></i>
+                        @php
+                            $industryVisuals = [
+                                'Healthcare'         => ['icon'=>'bi-heart-pulse-fill','grad'=>'linear-gradient(135deg,#064E3B,#065F46)','accent'=>'#34D399','badge'=>'#6EE7B7'],
+                                'Financial Services' => ['icon'=>'bi-graph-up-arrow',  'grad'=>'linear-gradient(135deg,#1E3A5F,#1D4ED8)','accent'=>'#60A5FA','badge'=>'#93C5FD'],
+                                'Manufacturing'      => ['icon'=>'bi-gear-wide-connected','grad'=>'linear-gradient(135deg,#431407,#9A3412)','accent'=>'#FB923C','badge'=>'#FED7AA'],
+                                'Retail'             => ['icon'=>'bi-bag-heart-fill',  'grad'=>'linear-gradient(135deg,#3B0764,#6D28D9)','accent'=>'#A78BFA','badge'=>'#DDD6FE'],
+                                'Logistics'          => ['icon'=>'bi-truck-front-fill','grad'=>'linear-gradient(135deg,#713F12,#CA8A04)','accent'=>'#FCD34D','badge'=>'#FEF08A'],
+                                'Education'          => ['icon'=>'bi-mortarboard-fill','grad'=>'linear-gradient(135deg,#0C4A6E,#0369A1)','accent'=>'#38BDF8','badge'=>'#BAE6FD'],
+                                'default'            => ['icon'=>'bi-cpu-fill',         'grad'=>'linear-gradient(135deg,#0F172A,#1E3A5F)','accent'=>'#60A5FA','badge'=>'#93C5FD'],
+                            ];
+                            $vis = $industryVisuals[$industry->name] ?? $industryVisuals['default'];
+                        @endphp
+                        <div class="h-100 d-flex flex-column align-items-center justify-content-center position-relative overflow-hidden"
+                             style="min-height:260px;background:{{ $vis['grad'] }};">
+                            {{-- Circuit grid pattern --}}
+                            <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.08;" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                                <line x1="0" y1="50"  x2="200" y2="50"  stroke="white" stroke-width="1"/>
+                                <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="1"/>
+                                <line x1="0" y1="150" x2="200" y2="150" stroke="white" stroke-width="1"/>
+                                <line x1="50"  y1="0" x2="50"  y2="200" stroke="white" stroke-width="1"/>
+                                <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="1"/>
+                                <line x1="150" y1="0" x2="150" y2="200" stroke="white" stroke-width="1"/>
+                                <circle cx="50"  cy="50"  r="3" fill="white"/>
+                                <circle cx="100" cy="50"  r="3" fill="white"/>
+                                <circle cx="150" cy="50"  r="3" fill="white"/>
+                                <circle cx="50"  cy="100" r="3" fill="white"/>
+                                <circle cx="100" cy="100" r="4" fill="white"/>
+                                <circle cx="150" cy="100" r="3" fill="white"/>
+                                <circle cx="50"  cy="150" r="3" fill="white"/>
+                                <circle cx="100" cy="150" r="3" fill="white"/>
+                                <circle cx="150" cy="150" r="3" fill="white"/>
+                            </svg>
+                            {{-- Glow ring --}}
+                            <div style="width:120px;height:120px;border-radius:50%;border:2px solid {{ $vis['accent'] }};opacity:.25;position:absolute;"></div>
+                            <div style="width:80px;height:80px;border-radius:50%;border:1px solid {{ $vis['accent'] }};opacity:.35;position:absolute;"></div>
+                            {{-- Icon --}}
+                            <div style="width:72px;height:72px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);position:relative;z-index:1;">
+                                <i class="bi {{ $vis['icon'] }}" style="font-size:2rem;color:{{ $vis['accent'] }};"></i>
+                            </div>
+                            {{-- Industry label --}}
+                            <div style="margin-top:1rem;font-size:.8rem;font-weight:700;color:{{ $vis['badge'] }};letter-spacing:.08em;text-transform:uppercase;position:relative;z-index:1;">
+                                {{ $industry->name }}
+                            </div>
+                            {{-- AI badge --}}
+                            <div style="position:absolute;top:12px;right:12px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:.25rem .6rem;font-size:.7rem;font-weight:700;color:rgba(255,255,255,.7);">
+                                <i class="bi bi-cpu me-1"></i>AI-Powered
+                            </div>
                         </div>
                         @endif
                     </div>
